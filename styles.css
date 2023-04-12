@@ -1,5 +1,5 @@
 *{
-	box-size: border-box;
+	box-sizing: border-box;
 }
 
 body{
@@ -20,11 +20,12 @@ body{
 	box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
 	width: 600px;
 	overflow: hidden;
+	
 }
 
-#quiz-question {
+ .quiz-header {
 	padding: 4rem;
-}
+} 
 
 h2 {
 	padding: 1rem;
@@ -40,4 +41,29 @@ ul {
 ul li {
 	font-size: 1.2rem;
 	margin: 1rem 0;
+}
+
+ul li label {
+	cursor: pointer;
+}
+
+button {
+	background-color: #03cae4;
+	color: white;
+	border: none;
+	display: block;
+	width: 100%;
+	cursor: pointer;
+	font-size: 1.1rem;
+	font-family: inherit;
+	padding: 1.3rem;
+} 
+
+button:hover {
+	background-color: #04adc4;
+}
+
+button:focus {
+	outline: none;
+	background-color: #44b927;
 }
