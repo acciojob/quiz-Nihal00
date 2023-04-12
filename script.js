@@ -33,14 +33,14 @@ const quizData = [
     }
 ]
 
-const quiz = document.getElementBy('quiz');
-const answerEls = document.querySelectorAll('.answer');
-const questionEls = document.getElementBy('question');
-const a_text = document.getElementBy('a_text');
-const b_text = document.getElementBy('b_text');
-const c_text = document.getElementBy('c_text');
-const d_text = document.getElementBy('d_text');
-const submitBtn = document.getElementBy('submit');
+const quiz = document.getElementBy('quiz')
+const answerEls = document.querySelectorAll('.answer')
+const questionEl = document.getElementBy('question')
+const a_text = document.getElementBy('a_text')
+const b_text = document.getElementBy('b_text')
+const c_text = document.getElementBy('c_text')
+const d_text = document.getElementBy('d_text')
+const submitBtn = document.getElementBy('submit')
 
 let currentQuiz = 0;
 let score = 0;
@@ -53,7 +53,7 @@ function loadQuiz() {
 
 	const currentQuizData = quizData[currentQuiz];
 
-	questionEls.innerText = currentQuizData.question;
+	questionEl.innerText = currentQuizData.question;
 	a_text.innerText = currentQuizData.a;
 	b_text.innerText = currentQuizData.b;
 	c_text.innerText = currentQuizData.c;
@@ -61,11 +61,11 @@ function loadQuiz() {
 }
 
 function deselectAnswers() {
-	answerEls.forEach(answerEls => answerEls.checked = false);
+	answerEls.forEach(answerEl => answerEl.checked = false);
 }
 
 function getSelected() {
-	let answerEls
+	let answer
 	answerEls.forEach(answerEl => {
 		if(answerEl.checked) {
 			answer = answerEl.id;
@@ -74,6 +74,27 @@ function getSelected() {
 	return answer;
 }
 
+
+submitBtn.addEventListener('click', () => {
+	const answer = getSelected();
+	if(answer) {
+		if(answer === quizData[currentQuiz].correct) {
+			score++;
+		}
+		currentQuiz++;
+
+		if(currentQuiz < quizData.length){
+			loadQuiz()
+		}else {
+			quiz.innerHTML = `
+		   <h2>You answered ${score}/${quizData.length} questions correctly<h2>
+			<button onclick="location.reload()">Reload</button>
+		  `
+			
+		}
+	}
+	
+})
 
 
 
